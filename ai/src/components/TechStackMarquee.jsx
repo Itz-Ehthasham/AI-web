@@ -11,7 +11,7 @@ const TechIcon = ({ tech }) => {
   if (!IconComponent || typeof IconComponent !== 'function') {
     // Fallback to a colored circle if icon is invalid
     return (
-      <div className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
+      <div className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm border-2 border-blue-200 dark:border-blue-400 hover:shadow-md transition-shadow duration-200">
         <div 
           className="w-6 h-6 flex-shrink-0 rounded-full"
           style={{ backgroundColor: tech.color }}
@@ -24,7 +24,7 @@ const TechIcon = ({ tech }) => {
   }
 
   return (
-    <div className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
+    <div className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm border-2 border-blue-200 dark:border-blue-400 hover:shadow-md transition-shadow duration-200">
       <IconComponent
         className="w-6 h-6 flex-shrink-0"
         style={{ color: tech.color }}

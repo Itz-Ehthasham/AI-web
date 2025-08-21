@@ -34,7 +34,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <motion.div
-      className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 h-full"
+      className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-blue-200 dark:border-blue-400 h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ y: -8 }}
@@ -117,7 +117,7 @@ const ProjectCard = ({ project }) => {
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
+                  className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md border border-blue-200 dark:border-blue-400"
                 >
                   {IconComponent && typeof IconComponent === 'function' ? (
                     <IconComponent
@@ -135,7 +135,7 @@ const ProjectCard = ({ project }) => {
               );
             })}
             {project.tech.length > 4 && (
-              <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md">
+              <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md border border-blue-200 dark:border-blue-400">
                 +{project.tech.length - 4}
               </span>
             )}
