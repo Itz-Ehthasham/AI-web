@@ -2,47 +2,66 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 import ProjectCard from './ProjectCard';
 
 const PortfolioHorizontal = () => {
   const scrollRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const animationRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  const checkScrollButtons = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-    }
-  };
-
+  // Auto-scroll effect
   useEffect(() => {
-    checkScrollButtons();
-    const scrollElement = scrollRef.current;
-    if (scrollElement) {
-      scrollElement.addEventListener('scroll', checkScrollButtons);
-      return () => scrollElement.removeEventListener('scroll', checkScrollButtons);
-    }
-  }, []);
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
 
-  const scrollTo = (direction) => {
-    if (scrollRef.current) {
-      const cardWidth = 420; // Desktop card width
-      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 1; // Pixels per frame (adjust for speed)
+
+    const animate = () => {
+      // Only auto-scroll when not dragging or hovering
+      if (!isDragging && !isHovering && scrollContainer) {
+        scrollPosition += scrollSpeed;
+        
+        // Reset scroll when reaching the end of first set
+        const maxScroll = scrollContainer.scrollWidth / 2;
+        if (scrollPosition >= maxScroll) {
+          scrollPosition = 0;
+        }
+        
+        // Apply the scroll
+        scrollContainer.scrollLeft = scrollPosition;
+      } else {
+        // Update scroll position when manually scrolling
+        scrollPosition = scrollContainer.scrollLeft;
+      }
+      
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animationRef.current = requestAnimationFrame(animate);
+
+    // Cleanup
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isDragging, isHovering]);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.pageX - scrollRef.current.offsetLeft);
     setScrollLeft(scrollRef.current.scrollLeft);
+    scrollRef.current.style.cursor = 'grabbing';
   };
 
   const handleMouseMove = (e) => {
@@ -55,20 +74,60 @@ const PortfolioHorizontal = () => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      scrollTo('left');
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      scrollTo('right');
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setIsDragging(false);
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
+    }
+  };
+
+  // Keyboard navigation
+  const handleKeyDown = (e) => {
+    if (!scrollRef.current) return;
+    
+    const cardWidth = 420;
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  // Touch events for mobile
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   return (
-    <section id="portfolio" className="py-16 bg-white dark:bg-gray-900">
+    <section id="portfolio" className="py-16 bg-white dark:bg-gray-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-12"
@@ -86,64 +145,67 @@ const PortfolioHorizontal = () => {
         </motion.div>
 
         {/* Portfolio Container */}
-        <div className="relative group">
-          {/* Left Arrow */}
-          {canScrollLeft && (
-            <motion.button
-              onClick={() => scrollTo('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ChevronLeft size={20} className="text-gray-700 dark:text-gray-300" />
-            </motion.button>
-          )}
-
-          {/* Right Arrow */}
-          {canScrollRight && (
-            <motion.button
-              onClick={() => scrollTo('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ChevronRight size={20} className="text-gray-700 dark:text-gray-300" />
-            </motion.button>
-          )}
-
+        <div className="relative">
+          {/* Gradient Overlays for visual effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+          
           {/* Horizontal Scroll Container */}
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-6 pb-4 cursor-grab active:cursor-grabbing"
+            className="flex gap-6 overflow-x-hidden overflow-y-hidden pb-4"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             onKeyDown={handleKeyDown}
             tabIndex={0}
             role="region"
-            aria-label="Portfolio projects"
+            aria-label="Portfolio projects carousel"
+            style={{
+              cursor: 'grab',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
           >
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="flex-shrink-0 snap-start min-w-[320px] md:min-w-[420px]"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+            {/* Duplicate projects twice for seamless infinite scroll */}
+            {[...projects, ...projects].map((project, index) => (
+              <div
+                key={`${project.id}-${index}`}
+                className="flex-shrink-0 w-[320px] md:w-[420px]"
+                style={{ minWidth: '320px' }}
               >
-                <ProjectCard project={project} />
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: (index % projects.length) * 0.1 
+                  }}
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              </div>
             ))}
           </div>
+
+          {/* Hide webkit scrollbar */}
+          <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
         </div>
+
+        
       </div>
     </section>
   );

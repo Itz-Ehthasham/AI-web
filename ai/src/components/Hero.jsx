@@ -62,7 +62,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
             variants={itemVariants}
           >
-            <CTAButton href="#portfolio" variant="primary">
+            <CTAButton href="/portfolio" variant="primary">
               View Portfolio
             </CTAButton>
             <CTAButton href="/expertise" variant="secondary">

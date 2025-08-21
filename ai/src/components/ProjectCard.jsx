@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star } from 'lucide-react';
+import { techStack } from '@/data/tech';
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -12,7 +13,7 @@ const ProjectCard = ({ project }) => {
       case 'AI':
         return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
       case 'Web':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+        return 'bg-blue-100 text-blue-800 dark:bg-gray-900 dark:text-blue-200';
       case 'Mobile':
         return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'Data':
@@ -20,6 +21,15 @@ const ProjectCard = ({ project }) => {
       default:
         return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
+  };
+
+  // Helper function to get tech info by name
+  const getTechInfo = (techName) => {
+    return techStack.find(tech => tech.name === techName) || {
+      name: techName,
+      icon: null,
+      color: '#6B7280'
+    };
   };
 
   return (
@@ -101,14 +111,29 @@ const ProjectCard = ({ project }) => {
         {/* Technologies */}
         <div className="mb-4">
           <div className="flex flex-wrap gap-2">
-            {project.tech.slice(0, 4).map((tech, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
-              >
-                {tech}
-              </span>
-            ))}
+            {project.tech.slice(0, 4).map((techName, index) => {
+              const techInfo = getTechInfo(techName);
+              const IconComponent = techInfo.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
+                >
+                  {IconComponent && typeof IconComponent === 'function' ? (
+                    <IconComponent
+                      className="w-3 h-3 flex-shrink-0"
+                      style={{ color: techInfo.color }}
+                    />
+                  ) : (
+                    <div 
+                      className="w-3 h-3 flex-shrink-0 rounded-full"
+                      style={{ backgroundColor: techInfo.color }}
+                    />
+                  )}
+                  <span>{techInfo.name}</span>
+                </div>
+              );
+            })}
             {project.tech.length > 4 && (
               <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md">
                 +{project.tech.length - 4}
