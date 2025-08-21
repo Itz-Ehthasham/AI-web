@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { projects } from '@/data/projects';
 import ProjectCard from './ProjectCard';
@@ -8,10 +8,6 @@ import ProjectCard from './ProjectCard';
 const PortfolioHorizontal = () => {
   const scrollRef = useRef(null);
   const animationRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
 
   // Auto-scroll effect
   useEffect(() => {
@@ -26,8 +22,7 @@ const PortfolioHorizontal = () => {
     const scrollSpeed = 1; // Pixels per frame (adjust for speed)
 
     const animate = () => {
-      // Only auto-scroll when not dragging or hovering
-      if (!isDragging && !isHovering && scrollContainer) {
+      if (scrollContainer) {
         scrollPosition += scrollSpeed;
         
         // Reset scroll when reaching the end of first set
@@ -38,9 +33,6 @@ const PortfolioHorizontal = () => {
         
         // Apply the scroll
         scrollContainer.scrollLeft = scrollPosition;
-      } else {
-        // Update scroll position when manually scrolling
-        scrollPosition = scrollContainer.scrollLeft;
       }
       
       animationRef.current = requestAnimationFrame(animate);
@@ -55,76 +47,7 @@ const PortfolioHorizontal = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isDragging, isHovering]);
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-    scrollRef.current.style.cursor = 'grabbing';
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    if (scrollRef.current) {
-      scrollRef.current.style.cursor = 'grab';
-    }
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    if (scrollRef.current) {
-      scrollRef.current.style.cursor = 'grab';
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    setIsDragging(false);
-    if (scrollRef.current) {
-      scrollRef.current.style.cursor = 'grab';
-    }
-  };
-
-  // Keyboard navigation
-  const handleKeyDown = (e) => {
-    if (!scrollRef.current) return;
-    
-    const cardWidth = 420;
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      scrollRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      scrollRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
-    }
-  };
-
-  // Touch events for mobile
-  const handleTouchStart = (e) => {
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  }, []);
 
   return (
     <section id="portfolio" className="py-16 bg-white dark:bg-gray-900 overflow-hidden">
@@ -154,25 +77,13 @@ const PortfolioHorizontal = () => {
           <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-hidden overflow-y-hidden pb-4"
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onKeyDown={handleKeyDown}
-            tabIndex={0}
-            role="region"
-            aria-label="Portfolio projects carousel"
             style={{
-              cursor: 'grab',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               WebkitOverflowScrolling: 'touch',
+              pointerEvents: 'none', // Disable all pointer interactions
             }}
           >
             {/* Duplicate projects twice for seamless infinite scroll */}
