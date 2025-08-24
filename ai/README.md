@@ -1,176 +1,212 @@
-# AI Developers — Developers Who Build AI Applications
+# AI Web Portfolio
 
-A modern, colorful, and highly interactive portfolio website built with Next.js, JavaScript, and Framer Motion animations.
+A modern, responsive web portfolio showcasing AI and machine learning projects with an interactive 3D robot animation.
 
-## 🚀 Features
+## ✨ Features
 
-- **Responsive Design**: Mobile-first approach with clean, dynamic portfolio aesthetic
-- **Horizontal Portfolio Scrolling**: Interactive horizontal carousel with drag, arrow controls, and keyboard navigation
-- **Tech Stack Marquee**: Auto-scrolling technology badges that pause on hover
-- **Dark/Light Theme**: Fully functional theme toggle with persistence and no hydration flicker
-- **Modern UI**: Built with Tailwind CSS 4, Framer Motion, and glassy overlays
-- **Separate Routes**: Navigation to dedicated pages for Portfolio, Expertise, Services, About, Blog, and Contact
-- **Floating CTA**: Always-visible "Get in touch" button for easy contact access
-
-## 🛠️ Tech Stack
-
-- **Frontend**: Next.js 15 + JavaScript (JSX) + React 19
-- **Styling**: Tailwind CSS 4 (JIT, dark mode class strategy)
-- **Animations**: Framer Motion for micro-interactions and entrance animations
-- **State Management**: Zustand for lightweight state management
-- **Icons**: Lucide React
-- **Theme Management**: Custom theme provider with localStorage persistence
-
-## 📱 Components
-
-- **Navbar**: Responsive navigation with theme toggle and prominent "Get in touch" button
-- **Hero Section**: Animated headline with gradient text and abstract background shapes
-- **Portfolio Horizontal**: Horizontal scrolling project showcase with snap behavior
-- **Tech Stack Marquee**: Auto-scrolling technology categories with hover pause
-- **Floating CTA**: Fixed contact button with gradient styling
-- **Footer**: Compact footer with essential links
-
-## 🎨 Design Features
-
-- **Colorful Gradients**: Deep dark backgrounds with bright accent gradients (blue → violet → fuchsia)
-- **Glassmorphism**: Backdrop blur effects and semi-transparent overlays
-- **Smooth Animations**: Staggered entrance animations and hover effects
-- **Rounded Cards**: `rounded-2xl` cards with generous padding and soft shadows
-- **Accessibility**: Focus rings, keyboard navigation, ARIA labels, and reduced motion support
+- **Interactive 3D Robot**: Animated robot on the home page using Lottie animations
+- **Responsive Design**: Mobile-first design that works on all devices
+- **Dark/Light Theme**: Toggle between themes with smooth transitions
+- **Modern Tech Stack**: Built with Next.js, React, Tailwind CSS, and Framer Motion
+- **AI-Focused Content**: Portfolio highlighting AI and ML projects
 
 ## 🚀 Getting Started
 
-1. **Install Dependencies**:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd ai
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. **Run Development Server**:
+3. **Run the development server**
    ```bash
    npm run dev
    ```
 
-3. **Open Browser**:
+4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 📁 Project Structure
+## 🏗️ Build
+
+```bash
+npm run build
+npm start
+```
+
+## 🤖 3D Robot Implementation
+
+The home page features an interactive 3D robot animation with multiple fallback methods:
+
+### **Primary Method: Lottie Animation**
+- Uses `lottie-react` library
+- Loads from hosted Lottie file: `https://lottie.host/c886cbc2-d699-42b1-b50f-ece3e53e95d5/JkUFjMlyWH.lottie`
+- Fast loading with optimized performance
+
+### **Fallback Method 1: Iframe Embed**
+- Automatically switches to iframe after 1 second
+- Uses official lottie.host embed
+- Guaranteed to work and loads quickly
+
+### **Fallback Method 2: CSS Robot**
+- Custom-built CSS/SVG robot with Framer Motion animations
+- Interactive hover effects and smooth transitions
+- Always available as final fallback
+
+### **Performance Optimizations**
+- **1-second timeout** for Lottie loading
+- **Immediate iframe fallback** for guaranteed display
+- **Reduced animation delays** (0.3s instead of 0.5s)
+- **Eliminated loading states** for faster perceived performance
+
+## 🎨 Component Structure
 
 ```
 src/
-├── components/              # Reusable UI components
-│   ├── Navbar.jsx          # Navigation with theme toggle
-│   ├── Hero.jsx            # Animated hero section
-│   ├── PortfolioHorizontal.jsx # Horizontal portfolio scroller
-│   ├── ProjectCard.jsx     # Individual project cards
-│   ├── TechStackMarquee.jsx # Tech stack marquee cards
-│   ├── FloatingCTA.jsx     # Fixed contact button
-│   ├── Footer.jsx          # Compact footer
-│   ├── ThemeToggle.jsx     # Theme toggle component
-│   └── CTAButton.jsx       # Reusable CTA button
-├── pages/                  # Next.js pages
-│   ├── index.jsx           # Home page (Hero + Portfolio + Tech Stack)
-│   ├── portfolio.jsx       # Full portfolio grid
-│   ├── expertise.jsx       # Expertise specialties
-│   ├── services.jsx        # Service packages
-│   ├── about.jsx           # About page
-│   ├── blog.jsx            # Blog page
-│   └── contact.jsx         # Contact form
-├── providers/              # Context providers
-│   └── ThemeProvider.jsx   # Theme management
-├── data/                   # Mock data
-│   ├── projects.js         # Portfolio projects
-│   └── tech.js             # Technology stack
-└── styles/                 # Global styles
-    └── globals.css         # Tailwind CSS and custom animations
+├── components/
+│   ├── Hero.jsx          # Main hero section with robot
+│   ├── Robot3D.jsx       # 3D robot component
+│   ├── Navbar.jsx        # Navigation bar
+│   ├── CTAButton.jsx     # Call-to-action buttons
+│   ├── PortfolioHorizontal.jsx # Portfolio showcase
+│   ├── TechStackMarquee.jsx    # Technology stack
+│   ├── FloatingCTA.jsx   # Floating call-to-action
+│   ├── Footer.jsx        # Footer component
+│   └── ThemeToggle.jsx   # Theme switcher
+├── pages/
+│   ├── index.jsx         # Home page
+│   ├── about.jsx         # About page
+│   ├── portfolio.jsx     # Portfolio page
+│   ├── services.jsx      # Services page
+│   ├── expertise.jsx     # Expertise page
+│   ├── blog.jsx          # Blog page
+│   └── contact.jsx       # Contact page
+└── providers/
+    └── ThemeProvider.jsx # Theme context provider
 ```
 
-## 🎯 Key Features Implementation
+## 🛠️ Technologies Used
 
-### Theme Toggle
-- Uses `class` strategy on `<html>` element
-- Persists in localStorage
-- Respects system preference on first load
-- Prevents hydration flicker with mounted state
+- **Frontend Framework**: Next.js 15.5.0
+- **React**: 19.1.0
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Lottie**: lottie-react 2.4.1
+- **Icons**: Lucide React
+- **Build Tool**: Webpack (Next.js built-in)
 
-### Horizontal Portfolio
-- CSS snap scrolling with `snap-x snap-mandatory`
-- Arrow controls for programmatic scrolling
-- Drag-to-scroll with pointer events
-- Keyboard arrow navigation support
-- Responsive card widths (320px mobile, 420px desktop)
+## 📱 Responsive Design
 
-### Tech Stack Marquee
-- CSS keyframe animations with `translateX`
-- Duplicate list trick for seamless loops
-- Hover pause functionality
-- Reduced motion support for accessibility
+- **Mobile First**: Designed for mobile devices first
+- **Breakpoints**: 
+  - `sm`: 640px+
+  - `md`: 768px+
+  - `lg`: 1024px+
+  - `xl`: 1280px+
+- **Grid Layout**: 
+  - Mobile: Single column layout
+  - Desktop: Two-column split (text left, robot right)
 
-## 🎨 Customization
+## 🎯 Key Features
 
-### Adding New Projects
-Update `data/projects.js`:
-```javascript
-{
-  id: 'unique-id',
-  tag: 'AI', // AI, Web, Mobile, Data
-  title: 'Project Title',
-  description: 'Detailed project description',
-  tech: ['React', 'Python', 'TensorFlow'],
-  featured: true,
-  image: '/path/to/image.jpg'
-}
+### **Hero Section**
+- Split layout with text on left, robot on right
+- Staggered animations for smooth entrance
+- Gradient text effects
+- Interactive CTA buttons
+
+### **Robot Animation**
+- **Lottie**: Primary 3D animation
+- **Iframe**: Fast fallback (1s timeout)
+- **CSS**: Interactive fallback with hover effects
+- **Status indicators**: Shows which method is active
+
+### **Theme System**
+- Dark/Light mode toggle
+- Smooth transitions between themes
+- Persistent theme preference
+- CSS custom properties for theming
+
+## 🔧 Troubleshooting
+
+### **Robot Not Loading**
+1. Check browser console for errors
+2. Verify internet connection (for Lottie/iframe)
+3. Robot will automatically fallback to CSS version
+
+### **Build Errors**
+1. Clear `node_modules` and reinstall:
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+2. Check Node.js version compatibility
+
+### **Performance Issues**
+1. Robot automatically optimizes loading
+2. Iframe fallback ensures fast display
+3. CSS robot provides instant fallback
+
+## 📁 File Structure
+
 ```
+public/
+├── favicon.ico
+├── next.svg
+└── Robot-Bot 3D.lottie  # Lottie animation file
 
-### Adding Tech Stack Items
-Update `data/tech.js`:
-```javascript
-{
-  category: 'New Category',
-  items: ['Technology1', 'Technology2', 'Technology3']
-}
+src/
+├── components/           # Reusable UI components
+├── pages/               # Next.js pages
+├── providers/           # Context providers
+├── data/                # Static data files
+└── styles/              # Global styles
 ```
-
-### Styling
-- Modify `src/styles/globals.css` for custom animations
-- Update Tailwind classes in components
-- Adjust color schemes in CSS variables
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px (1 card visible)
-- **Tablet**: 768px - 1024px (2 cards visible)
-- **Desktop**: > 1024px (3+ cards partially visible)
-
-## 🌟 Performance Features
-
-- **Image Optimization**: Next.js Image component
-- **Lazy Loading**: Non-critical sections load on scroll
-- **Reduced Motion**: Respects user preferences
-- **Efficient Animations**: Hardware-accelerated transforms
 
 ## 🚀 Deployment
 
-This project can be deployed to:
-- **Vercel** (Recommended for Next.js)
-- **Netlify**
-- **AWS Amplify**
-- Any static hosting service
+### **Vercel (Recommended)**
+1. Connect your GitHub repository
+2. Vercel automatically detects Next.js
+3. Deploys on every push to main branch
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+### **Other Platforms**
+1. Build the project: `npm run build`
+2. Start production server: `npm start`
+3. Deploy the `out` directory
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+If you encounter any issues:
+1. Check the troubleshooting section
+2. Review browser console for errors
+3. Ensure all dependencies are installed
+4. Verify Node.js version compatibility
 
 ---
 
-Built with ❤️ using Next.js, JavaScript, Tailwind CSS, and Framer Motion
+**Built with ❤️ using Next.js, React, and modern web technologies**

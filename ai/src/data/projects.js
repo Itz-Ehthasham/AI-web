@@ -70,5 +70,14 @@ export const projects = [
     tech: ['Python', 'Pandas', 'Plotly', 'FastAPI'],
     featured: false,
     image: '/api/placeholder/400/300'
+  },
+  {
+    id: '9',
+    tag: 'AI',
+    title: 'AI Image Recognition',
+    description: 'Computer vision application that can identify and classify objects in images using deep learning.',
+    tech: ['Python', 'PyTorch', 'OpenCV', 'Streamlit'],
+    featured: true,
+    image: '/api/placeholder/400/300'
   }
 ];
