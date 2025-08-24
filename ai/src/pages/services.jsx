@@ -1,7 +1,8 @@
 import { Brain, Globe, Database, Shield, Palette, Code, Sparkles, ArrowRight, CheckCircle, Zap, TrendingUp, Users } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-
+import ContactSection from '@/components/ContactSection';
+import BorderWrapper from '../components/BorderWrapper';
 const services = [
   {
     icon: Brain,
@@ -67,12 +68,27 @@ const services = [
     ],
     technologies: ["Figma", "React", "Tailwind", "Framer Motion"],
     gradient: "from-indigo-600 to-purple-600"
+  },
+  {
+    icon: Code,
+    title: "Custom Software Development",
+    description: "Tailored software solutions built to meet your unique business needs and challenges.",
+    features: [
+      "Scalable Architecture",
+      "Agile Development",
+      "Quality Assurance",
+      "Ongoing Support"
+    ],
+    technologies: ["Agile", "CI/CD", "Docker", "Kubernetes"],
+    gradient: "from-yellow-600 to-orange-600"
   }
 ];
 
 export default function Services() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <Navbar />
+      
       {/* Header Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-700/25 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"></div>
@@ -121,6 +137,7 @@ export default function Services() {
           })}
         </div>
 
+        {/* Services Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -197,39 +214,12 @@ export default function Services() {
             );
           })}
         </div>
-
-        {/* Bottom CTA Section */}
-        <div className="mt-20 text-center">
-          <div className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-3xl p-16 shadow-2xl overflow-hidden">
-            {/* Animated Background Pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,rgba(255,255,255,0.6))]"></div>
-            </div>
-            
-            {/* Floating Orbs */}
-            <div className="absolute top-0 left-0 w-72 h-72 bg-purple-400 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-400 rounded-full filter blur-3xl opacity-20 animate-pulse animation-delay-2000"></div>
-            
-            <div className="relative z-10">
-              <div className="inline-flex items-center justify-center p-3 bg-white/10 backdrop-blur-sm rounded-2xl mb-6">
-                <Sparkles className="h-8 w-8 text-white animate-pulse" />
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                Ready to Transform Your Ideas?
-              </h2>
-              <p className="text-xl text-purple-100 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Let's build something amazing together. Our experts are ready to turn your vision into reality with cutting-edge technology and innovative solutions.
-              </p>
-              
-              <div className="inline-flex items-center space-x-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full text-white">
-                <CheckCircle className="h-5 w-5" />
-                <span className="font-medium">Trusted by 100+ clients worldwide</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+
+      {/* Contact Section */}
+      <ContactSection />
+
+      <Footer />
     </div>
   );
 }

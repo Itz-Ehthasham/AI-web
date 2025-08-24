@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ContactSection from '@/components/ContactSection';
 import { useState, useEffect, useRef } from 'react';
 import { techStack } from '@/data/tech';
 
@@ -382,27 +383,45 @@ export default function Expertise() {
                 </div>
               </div>
 
-              {/* AI & Data Science */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">AI & Data Science</h3>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {techStack.filter(tech => tech.category === 'ai').map((tech, index) => {
-                    const Icon = tech.icon;
-                    // Check if Icon is a valid component
-                    if (!Icon || typeof Icon !== 'function') {
+                {/* AI & Data Science
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">AI & Data Science</h3>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    {techStack.filter(tech => tech.category === 'ai').map((tech, index) => {
+                      const Icon = tech.icon;
+                      // Check if Icon is a valid component
+                      if (!Icon || typeof Icon !== 'function') {
+                        return (
+                          <div
+                            key={index}
+                            className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-purple-400"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div 
+                                style={{ 
+                                  width: 20, 
+                                  height: 20, 
+                                  backgroundColor: tech.color || '#888', 
+                                  borderRadius: '50%' 
+                                }} 
+                              />
+                              <span className="font-semibold text-gray-700 dark:text-gray-300">
+                                {tech.name}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      }
                       return (
                         <div
                           key={index}
                           className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-purple-400"
                         >
                           <div className="flex items-center gap-3">
-                            <div 
-                              style={{ 
-                                width: 20, 
-                                height: 20, 
-                                backgroundColor: tech.color || '#888', 
-                                borderRadius: '50%' 
-                              }} 
+                            <Icon 
+                              color={tech.color} 
+                              size={20}
+                              className="group-hover:rotate-12 transition-transform duration-300"
                             />
                             <span className="font-semibold text-gray-700 dark:text-gray-300">
                               {tech.name}
@@ -410,49 +429,49 @@ export default function Expertise() {
                           </div>
                         </div>
                       );
-                    }
-                    return (
-                      <div
-                        key={index}
-                        className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-purple-400"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Icon 
-                            color={tech.color} 
-                            size={20}
-                            className="group-hover:rotate-12 transition-transform duration-300"
-                          />
-                          <span className="font-semibold text-gray-700 dark:text-gray-300">
-                            {tech.name}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                    })}
+                  </div>
                 </div>
-              </div>
 
-              {/* Cloud & DevOps */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">Cloud & DevOps</h3>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {techStack.filter(tech => tech.category === 'cloud').map((tech, index) => {
-                    const Icon = tech.icon;
-                    // Check if Icon is a valid component
-                    if (!Icon || typeof Icon !== 'function') {
+                {/* Cloud & DevOps */}
+                {/* <div>
+                  <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">Cloud & DevOps</h3>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    {techStack.filter(tech => tech.category === 'cloud').map((tech, index) => {
+                      const Icon = tech.icon;
+                      // Check if Icon is a valid component
+                      if (!Icon || typeof Icon !== 'function') {
+                        return (
+                          <div
+                            key={index}
+                            className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-orange-400"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div 
+                                style={{ 
+                                  width: 20, 
+                                  height: 20, 
+                                  backgroundColor: tech.color || '#888', 
+                                  borderRadius: '50%' 
+                                }} 
+                              />
+                              <span className="font-semibold text-gray-700 dark:text-gray-300">
+                                {tech.name}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      }
                       return (
                         <div
                           key={index}
                           className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-orange-400"
                         >
                           <div className="flex items-center gap-3">
-                            <div 
-                              style={{ 
-                                width: 20, 
-                                height: 20, 
-                                backgroundColor: tech.color || '#888', 
-                                borderRadius: '50%' 
-                              }} 
+                            <Icon 
+                              color={tech.color} 
+                              size={20}
+                              className="group-hover:rotate-12 transition-transform duration-300"
                             />
                             <span className="font-semibold text-gray-700 dark:text-gray-300">
                               {tech.name}
@@ -460,49 +479,49 @@ export default function Expertise() {
                           </div>
                         </div>
                       );
-                    }
-                    return (
-                      <div
-                        key={index}
-                        className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-orange-400"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Icon 
-                            color={tech.color} 
-                            size={20}
-                            className="group-hover:rotate-12 transition-transform duration-300"
-                          />
-                          <span className="font-semibold text-gray-700 dark:text-gray-300">
-                            {tech.name}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+                    })}
+                  </div>
+                </div> */}
 
-              {/* Mobile Development */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">Mobile Development</h3>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {techStack.filter(tech => tech.category === 'mobile').map((tech, index) => {
-                    const Icon = tech.icon;
-                    // Check if Icon is a valid component
-                    if (!Icon || typeof Icon !== 'function') {
+                {/* Mobile Development */}
+                {/* <div>
+                  <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">Mobile Development</h3>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    {techStack.filter(tech => tech.category === 'mobile').map((tech, index) => {
+                      const Icon = tech.icon;
+                      // Check if Icon is a valid component
+                      if (!Icon || typeof Icon !== 'function') {
+                        return (
+                          <div
+                            key={index}
+                            className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-pink-400"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div 
+                                style={{ 
+                                  width: 20, 
+                                  height: 20, 
+                                  backgroundColor: tech.color || '#888', 
+                                  borderRadius: '50%' 
+                                }} 
+                              />
+                              <span className="font-semibold text-gray-700 dark:text-gray-300">
+                                {tech.name}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      }
                       return (
                         <div
                           key={index}
                           className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-pink-400"
                         >
                           <div className="flex items-center gap-3">
-                            <div 
-                              style={{ 
-                                width: 20, 
-                                height: 20, 
-                                backgroundColor: tech.color || '#888', 
-                                borderRadius: '50%' 
-                              }} 
+                            <Icon 
+                              color={tech.color} 
+                              size={20}
+                              className="group-hover:rotate-12 transition-transform duration-300"
                             />
                             <span className="font-semibold text-gray-700 dark:text-gray-300">
                               {tech.name}
@@ -510,31 +529,14 @@ export default function Expertise() {
                           </div>
                         </div>
                       );
-                    }
-                    return (
-                      <div
-                        key={index}
-                        className="group relative px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer border-2 border-gray-200 dark:border-gray-700 hover:border-pink-400"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Icon 
-                            color={tech.color} 
-                            size={20}
-                            className="group-hover:rotate-12 transition-transform duration-300"
-                          />
-                          <span className="font-semibold text-gray-700 dark:text-gray-300">
-                            {tech.name}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+                    })}
+                  </div>  
+              </div>*/}
             </div>
           </div>
         </div>
       </main>
+      <ContactSection />
       
       <Footer />
       
