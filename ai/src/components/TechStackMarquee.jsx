@@ -171,7 +171,7 @@ const TechStackMarquee = () => {
             {/* Left side - Text content */}
             <div className="space-y-6">
               <motion.h2 
-                className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white"
+                className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-300% mb-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

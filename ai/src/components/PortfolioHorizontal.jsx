@@ -52,9 +52,9 @@ const PortfolioHorizontal = () => {
   return (
     <section id="portfolio" className="py-16 bg-gray-50 dark:bg-gray-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Portfolio Card Container */}
+        {/* Portfolio Card Container - REMOVED BORDER */}
         <motion.div 
-          className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-2 border-gray-200 dark:border-gray-700 p-8"
+          className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -67,7 +67,7 @@ const PortfolioHorizontal = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-300% mb-4">
               Our Portfolio
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -95,11 +95,12 @@ const PortfolioHorizontal = () => {
               }}
             >
               {/* Duplicate projects multiple times for seamless infinite scroll */}
+              {/* INCREASED CARD WIDTH for better text visibility */}
               {[...projects, ...projects, ...projects, ...projects].map((project, index) => (
                 <div
                   key={`${project.id}-${index}`}
-                  className="flex-shrink-0 w-[320px] md:w-[420px]"
-                  style={{ minWidth: '320px' }}
+                  className="flex-shrink-0 w-[500px] md:w-[600px] lg:w-[700px]"
+                  style={{ minWidth: '500px' }}
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}

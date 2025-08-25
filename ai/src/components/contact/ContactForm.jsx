@@ -33,7 +33,7 @@ const ContactForm = ({ headline, ctaText }) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="e.g. James Bond"
+            placeholder="e.g. Riya Rathore"
             error={errors.name}
           />
           
@@ -44,7 +44,7 @@ const ContactForm = ({ headline, ctaText }) => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="e.g. +1 (007) 111-1111"
+            placeholder="e.g. +91 696969696"
             error={errors.phone}
           />
         </div>
@@ -58,7 +58,7 @@ const ContactForm = ({ headline, ctaText }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="e.g. j.bond@solveit.dev"
+            placeholder="e.g. Riya@gmail.com"
             error={errors.email}
           />
           
@@ -68,7 +68,7 @@ const ContactForm = ({ headline, ctaText }) => {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            placeholder="Solveit Inc"
+            placeholder="AI DEV"
           />
         </div>
         
