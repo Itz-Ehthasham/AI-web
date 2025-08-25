@@ -1,7 +1,7 @@
 import { Brain, Globe, Database, Shield, Palette, Code, Sparkles, ArrowRight, CheckCircle, Zap, TrendingUp, Users } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ContactSection from '@/components/ContactSection';
+import ContactSection from '@/components/contact/ContactSection';
 import BorderWrapper from '../components/common/BorderWrapper'; 
 const services = [
   {
