@@ -1,101 +1,116 @@
+// hooks/useContactForm.js
 import { useState } from 'react';
 
 export const useContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
     email: '',
+    phone: '',
     company: '',
     message: '',
     file: null
   });
-
-  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    
+    if (name === 'file') {
+      setFormData(prev => ({ ...prev, file: files[0] }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+      // Clear error when user starts typing
+      if (errors[name]) {
+        setErrors(prev => ({ ...prev, [name]: '' }));
+      }
+    }
+  };
+
+  const handlePrivacyChange = (checked) => {
+    setAcceptedPrivacy(checked);
+    if (checked && errors.privacy) {
+      setErrors(prev => ({ ...prev, privacy: '' }));
+    }
+  };
 
   const validateForm = () => {
     const newErrors = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = 'Required';
-    }
-    
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Required';
+      newErrors.name = 'Name is required';
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = 'Required';
+      newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email';
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
     }
     
     if (!acceptedPrivacy) {
       newErrors.privacy = 'Please accept the privacy policy';
     }
     
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) {
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
     
     setIsSubmitting(true);
     
-    // Simulate API call - replace with actual API call
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
-      alert('Thank you! We\'ll get back to you soon.');
+    try {
+      // Create FormData object for file upload
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('company', formData.company);
+      formDataToSend.append('message', formData.message);
       
-      // Reset form
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        company: '',
-        message: '',
-        file: null
+      if (formData.file) {
+        formDataToSend.append('file', formData.file);
+      }
+      
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formDataToSend,
       });
-      setAcceptedPrivacy(false);
-      setErrors({});
-    }, 1500);
-  };
-
-  const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    
-    if (type === 'file') {
-      setFormData(prev => ({
-        ...prev,
-        file: files[0]
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    }
-    
-    // Clear error for this field
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
-
-  const handlePrivacyChange = (checked) => {
-    setAcceptedPrivacy(checked);
-    if (errors.privacy) {
-      setErrors(prev => ({ ...prev, privacy: '' }));
+      
+       await response.json();
+      
+      if (response.ok) {
+        // Success - reset form
+        alert('Thank you! Your message has been sent successfully.');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: '',
+          file: null
+        });
+        setAcceptedPrivacy(false);
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      alert('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
