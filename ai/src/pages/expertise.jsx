@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ContactSection from '@/components/ContactSection';
+import ContactSection from '@/components/contact/ContactSection';
 import ExpertiseHeader from '@/components/expertise/ExpertiseHeader';
 import CoreStrengths from '@/components/expertise/CoreStrengths';
 import StatsSection from '@/components/expertise/StatsSection';

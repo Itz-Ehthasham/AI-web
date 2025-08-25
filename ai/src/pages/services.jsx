@@ -2,7 +2,7 @@ import { Brain, Globe, Database, Shield, Palette, Code, Sparkles, ArrowRight, Ch
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactSection from '@/components/ContactSection';
-import BorderWrapper from '../components/BorderWrapper';
+import BorderWrapper from '../components/common/BorderWrapper'; 
 const services = [
   {
     icon: Brain,

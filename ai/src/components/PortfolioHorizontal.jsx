@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { projects } from '@/data/projects';
-import ProjectCard from './ProjectCard';
+import ProjectCard from './projects/ProjectCard';
 
 const PortfolioHorizontal = () => {
   const scrollRef = useRef(null);

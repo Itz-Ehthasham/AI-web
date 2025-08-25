@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-// Use dynamic import for ContactSection
-const ContactSection = dynamic(() => import('@/components/ContactSection'), {
+// Use dynamic import for ContactSection - update the path
+const ContactSection = dynamic(() => import('@/components/contact/ContactSection'), {
   ssr: true
 });
 
@@ -18,6 +18,5 @@ export default function Contact() {
     </div>
   );
 }
-
 
 
