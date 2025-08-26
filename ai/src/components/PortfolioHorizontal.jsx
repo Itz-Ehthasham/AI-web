@@ -52,7 +52,7 @@ const PortfolioHorizontal = () => {
   return (
     <section id="portfolio" className="py-16 bg-gray-50 dark:bg-gray-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Portfolio Card Container - REMOVED BORDER */}
+        {/* Portfolio Card Container */}
         <motion.div 
           className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8"
           initial={{ opacity: 0, y: 20 }}
@@ -67,15 +67,16 @@ const PortfolioHorizontal = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Portfolio
-            </h2>
+            <h2 className="text-5xl font-bold bg-clip-text  font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-300% mb-4">
+  Our Portfolio
+</h2>
+
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Explore our diverse collection of AI-powered applications, web platforms, and innovative solutions.
             </p>
           </motion.div>
 
-          {/* Portfolio Container - REMOVED BORDER */}
+          {/* Portfolio Container - */}
           <div className="relative rounded-xl p-4 bg-gray-50 dark:bg-gray-800">
             {/* Gradient Overlays for visual effect */}
             <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 dark:from-gray-800 to-transparent z-10 pointer-events-none" />

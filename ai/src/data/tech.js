@@ -16,8 +16,8 @@ import {
   SiFirebase,
   SiMongodb,
   SiPostgresql,
-  SiAmazonaws,
-  SiMicrosoftazure,
+  // SiAmazonaws,
+  // SiAzure, // Changed from SiMicrosoftazure
   SiGooglecloud,
   SiExpress,
   SiDjango,
@@ -26,7 +26,7 @@ import {
   SiScikitlearn,
   SiD3Dotjs,
   SiStripe,
-  SiReactnative,
+  // SiReactnative,
   SiRedux,
   SiOpencv,
   SiStreamlit,
@@ -245,12 +245,12 @@ export const techStack = [
   },
   
   // Mobile & Cross-Platform
-  {
-    name: 'React Native',
-    icon: SiReactnative,
-    color: '#61DAFB',
-    category: 'mobile'
-  },
+  // {
+  //   name: 'React Native',
+  //   icon: SiReactnative,
+  //   color: '#61DAFB',
+  //   category: 'mobile'
+  // },
   {
     name: 'Flutter',
     icon: SiFlutter,
@@ -271,18 +271,18 @@ export const techStack = [
     color: '#326CE5',
     category: 'devops'
   },
-  {
-    name: 'AWS',
-    icon: SiAmazonaws,
-    color: '#232F3E',
-    category: 'cloud'
-  },
-  {
-    name: 'Microsoft Azure',
-    icon: SiMicrosoftazure,
-    color: '#0078D4',
-    category: 'cloud'
-  },
+  // {
+  //   name: 'AWS',
+  //   icon: SiAmazonaws,
+  //   color: '#232F3E',
+  //   category: 'cloud'
+  // },
+  // {
+  //   name: 'Microsoft Azure',
+  //   icon: SiAzure, // Changed from SiMicrosoftazure
+  //   color: '#0078D4',
+  //   category: 'cloud'
+  // },
   {
     name: 'Google Cloud',
     icon: SiGooglecloud,
@@ -386,3 +386,14 @@ export const getUniqueTechStack = () => {
     return true;
   });
 };
+
+// Alternative: If SiAzuredevops also doesn't work, you can use the FallbackIcon
+// Just replace the Microsoft Azure entry with:
+/*
+  {
+    name: 'Microsoft Azure',
+    icon: FallbackIcon,
+    color: '#0078D4',
+    category: 'cloud'
+  },
+*/

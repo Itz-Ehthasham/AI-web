@@ -11,7 +11,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-20 ">
         <ContactSection headline="Let's build something amazing together."/>
       </main>
       <Footer />

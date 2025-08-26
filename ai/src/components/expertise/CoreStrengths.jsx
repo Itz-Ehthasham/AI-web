@@ -4,7 +4,7 @@ export default function CoreStrengths() {
   return (
     <div className="mb-16">
       <h2 className="text-4xl font-bold text-center mb-12">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+        <span className="text-4xl bg-clip-text text-transparent  font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-300% mb-4">
           Our Core Strengths
         </span>
       </h2>

@@ -11,7 +11,7 @@ export const teamMembers = [
       "Marketing",
       "Full Stack Development",
     ],
-    description: "I'm Ehthasham Mustafa, a passionate Full Stack Developer with a strong focus on building modern, scalable, and user-friendly applications. With expertise in MERN stack, backend architecture, and UI/UX design. My interests also extend into AI development, data-driven systems, and cybersecurity, allowing me to work across diverse technologies with confidence."
+    description: "I'm Ehthasham Mustafa, a Good boy who is  passionate Full Stack Developer with a strong focus on building modern, scalable, and user-friendly applications. With expertise in MERN stack, backend architecture, and UI/UX design. My interests also extend into AI development, data-driven systems, and cybersecurity, allowing me to work across diverse technologies with confidence."
   },
   {
     name: "MD.Haneef Siddiqui",
@@ -25,7 +25,7 @@ export const teamMembers = [
       "Deep Learning Models",
       "AI-Powered Applications"
     ],
-    description: "With over 8 years of experience in Artificial Intelligence and Machine Learning, Aamir specializes in building AI-powered applications that enhance decision-making and automation. His work ensures our solutions remain cutting-edge and future-ready."
+    description: "With over 8 years of Disco Molsahab experience in Artificial Intelligence and Machine Learning, Aamir specializes in building AI-powered applications that enhance decision-making and automation. His work ensures our solutions remain cutting-edge and future-ready."
   },
   {
     name: "MD.Raheem",
@@ -39,7 +39,7 @@ export const teamMembers = [
       "Ethical Hacking",
       "Penetration Testing"
     ],
-    description: "Raheem is our Cybersecurity Specialist, ensuring that all our applications are secure, compliant, and resilient against threats. Her expertise in encryption systems and threat detection frameworks makes her the guardian of our platforms and clients' data."
+    description: "Raheem is our Cybersecurity Specialist and emotionally expert, ensuring that all our applications are secure, compliant, and resilient against threats. Her expertise in encryption systems and threat detection frameworks makes her the guardian of our platforms and clients' data."
   },
   {
     name: "Syed Jahangir",
@@ -53,7 +53,7 @@ export const teamMembers = [
       "Machine Learning Algorithms",
       "Data Visualization"
     ],
-    description: "Jahangir is a Data Scientist with a strong background in transforming raw data into business insights through advanced statistical modeling. His ability to uncover patterns and trends ensures that our clients make data-driven decisions with confidence."
+    description: "Jahangir is a Chota bomb bada phataka Data Scientist with a strong background in transforming raw data into business insights through advanced statistical modeling. His ability to uncover patterns and trends ensures that our clients make data-driven decisions with confidence."
   },
   {
     name: "Nouman shaik",
@@ -67,7 +67,7 @@ export const teamMembers = [
       "API Development",
       "Scalable System Architecture"
     ],
-    description: "Nouman has 10+ years of experience managing and delivering complex software projects. As both a certified project manager and senior full stack developer, she bridges the gap between technical execution and client goals, ensuring projects are delivered on time and with high quality."
+    description: "Nouman has 10+ years of being Our Boss experience managing and delivering complex software projects. As both a certified project manager and senior full stack developer, she bridges the gap between technical execution and client goals, ensuring projects are delivered on time and with high quality."
   },
   {
     name: "MD. Abdullah",
@@ -81,6 +81,6 @@ export const teamMembers = [
       "Design Systems",
       "User Journey Optimization"
     ],
-    description: "Abdullah is our UI/UX Designer and Frontend Specialist, creating user-friendly, modern, and accessible interfaces. His focus on visual storytelling ensures that our applications deliver a seamless experience for end users."
+    description: "Abdullah is our UI/UX Designer and Frontend Specialist, who's parttime job is to hit 10th class students creating user-friendly, modern, and accessible interfaces. His focus on visual storytelling ensures that our applications deliver a seamless experience for end users."
   }
 ];

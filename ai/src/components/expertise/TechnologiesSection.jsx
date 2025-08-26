@@ -11,7 +11,7 @@ export default function TechnologiesSection() {
   return (
     <div className="text-center">
       <h2 className="text-3xl font-bold mb-12">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-blue-600">
+        <span className="bg-clip-text text-transparent font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-300% animate-gradient">
           Technologies We Master
         </span>
       </h2>
