@@ -6,7 +6,7 @@ import TestimonialCard from './TestimonialCard';
 
 const ContactSection = ({ 
   headline = "Got a project in mind?",
-  ctaText = "Let's solve it",
+  ctaText = "Get in touch",
   showBackground = true,
   className = ""
 }) => {
