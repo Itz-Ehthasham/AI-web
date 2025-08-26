@@ -18,15 +18,12 @@ const ProjectCard = ({ project }) => {
         <div className="flex-1 p-8 flex flex-col justify-between">
           {/* Top Section */}
           <div>
-            {/* Tag Badge */}
             <ProjectTag tag={project.tag} />
 
-            {/* Title */}
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {project.title}
             </h3>
 
-            {/* Description */}
             <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
               {project.description}
             </p>
@@ -34,10 +31,8 @@ const ProjectCard = ({ project }) => {
 
           {/* Bottom Section */}
           <div>
-            {/* Technologies */}
             <ProjectTechStack technologies={project.tech} />
 
-            {/* Action Button */}
             <Link href={`/projects/${project.id}`}>
               <motion.button 
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-sm font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
@@ -51,13 +46,13 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Right Side - Project Image */}
-        <ProjectImage 
-          imageUrl={project.imageUrl}
-          imageAlt={project.title}
-          featured={project.featured}
-          githubUrl={project.githubUrl}
-          liveUrl={project.liveUrl}
-        />
+        <div className="flex-shrink-0 w-[300px] md:w-[400px] h-full overflow-hidden rounded-r-2xl">
+          <ProjectImage
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </motion.div>
   );

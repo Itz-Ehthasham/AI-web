@@ -67,7 +67,7 @@ const PortfolioHorizontal = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-300% mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Our Portfolio
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -75,8 +75,8 @@ const PortfolioHorizontal = () => {
             </p>
           </motion.div>
 
-          {/* Portfolio Container */}
-          <div className="relative border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-gray-50 dark:bg-gray-800">
+          {/* Portfolio Container - REMOVED BORDER */}
+          <div className="relative rounded-xl p-4 bg-gray-50 dark:bg-gray-800">
             {/* Gradient Overlays for visual effect */}
             <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 dark:from-gray-800 to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-50 dark:from-gray-800 to-transparent z-10 pointer-events-none" />
@@ -91,16 +91,19 @@ const PortfolioHorizontal = () => {
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
                 WebkitOverflowScrolling: 'touch',
-                pointerEvents: 'none', // Disable all pointer interactions
+                // Removed pointerEvents: 'none' to allow clicks
               }}
             >
               {/* Duplicate projects multiple times for seamless infinite scroll */}
-              {/* INCREASED CARD WIDTH for better text visibility */}
+              {/* FURTHER INCREASED CARD WIDTH for complete text visibility */}
               {[...projects, ...projects, ...projects, ...projects].map((project, index) => (
                 <div
                   key={`${project.id}-${index}`}
-                  className="flex-shrink-0 w-[500px] md:w-[600px] lg:w-[700px]"
-                  style={{ minWidth: '500px' }}
+                  className="flex-shrink-0 w-[650px] md:w-[750px] lg:w-[850px] xl:w-[900px]"
+                  style={{ 
+                    minWidth: '650px',
+                    pointerEvents: 'auto' // Enable pointer events for cards
+                  }}
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}

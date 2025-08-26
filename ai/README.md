@@ -164,7 +164,6 @@ src/
 ```
 public/
 ├── favicon.ico
-├── next.svg
 └── Robot-Bot 3D.lottie  # Lottie animation file
 
 src/
