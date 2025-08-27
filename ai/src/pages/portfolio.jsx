@@ -11,9 +11,10 @@ export default function Portfolio() {
       <main className="pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Full Portfolio
-            </h1>
+           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+  Full Portfolio
+</h1>
+
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Explore all our projects and innovative solutions
             </p>
