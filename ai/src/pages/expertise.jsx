@@ -1,35 +1,30 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ContactSection from '@/components/contact/ContactSection';
+import ExpertiseHeader from '@/components/expertise/ExpertiseHeader';
+import CoreStrengths from '@/components/expertise/CoreStrengths';
+import StatsSection from '@/components/expertise/StatsSection';
+import ExcellenceSection from '@/components/expertise/ExcellenceSection';
+import TechnologiesSection from '@/components/expertise/TechnologiesSection';
 
 export default function Expertise() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <Navbar />
       
-      <main className="pt-20 pb-16">
+      <main className="pt-20 pb-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Expertise
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Specialized skills and knowledge areas
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Expertise cards would go here */}
-            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
-              <h3 className="text-xl font-semibold mb-4">Coming Soon</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Detailed expertise information will be added here.
-              </p>
-            </div>
-          </div>
+          <ExpertiseHeader />
+          <CoreStrengths />
+          <StatsSection />
+          <ExcellenceSection />
+          <TechnologiesSection />
         </div>
       </main>
       
+      <ContactSection />
       <Footer />
     </div>
   );
 }
+

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const CTAButton = ({ children, href, variant = 'primary', className = '', ...props }) => {
   const baseClasses = 'inline-flex items-center justify-center px-8 py-4 font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl';
@@ -13,15 +14,15 @@ const CTAButton = ({ children, href, variant = 'primary', className = '', ...pro
 
   if (href) {
     return (
-      <motion.a
-        href={href}
-        className={classes}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        {...props}
-      >
-        {children}
-      </motion.a>
+      <Link href={href} className={classes} {...props}>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-full h-full flex items-center justify-center"
+        >
+          {children}
+        </motion.div>
+      </Link>
     );
   }
 

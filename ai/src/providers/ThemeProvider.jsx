@@ -19,11 +19,10 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     setMounted(true);
     
-    // Check localStorage first, then system preference
+    // Use explicit localStorage only; default is light
     const theme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (theme === 'dark' || (!theme && prefersDark)) {
+    if (theme === 'dark') {
       setIsDark(true);
       document.documentElement.classList.add('dark');
     } else {
