@@ -1,4 +1,4 @@
-# AI Web Portfolio
+# AI Developers Web Portfolio
 
 A modern, responsive web portfolio showcasing AI and machine learning projects with an interactive 3D robot animation.
 
